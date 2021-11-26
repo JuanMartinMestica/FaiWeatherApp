@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>FAI-Weather</title>
+    <title>FAI-Weather - Próximos días</title>
+    <link rel="stylesheet" href="proximos-dias.css">
 </head>
-
 <body>
 
     <div class="wrapper">
@@ -35,16 +33,22 @@
         </div>
     </header>
     <!--Contenido principal-->
+
+
     <div class="content">
+       
+        <div class="container search">
+            <form class="search-box" id="search-form">
+                <input autocomplete=off type="text" class="search-bar" id="search-bar" placeholder="Ingresá el nombre de tu ciudad">
+               </form>
+               <h1 class="city-name"></h1>
+        </div>
+        
+
         <div class="container">
-            <div class="column-1">
-                <img class="person" src="/img/Weather_Monochromatic.svg" alt="personaje clima">
-            </div>
-            <div class="column-2">
-                <h1 class="title">Explorá el clima de tu ciudad,</h1>
-                <h2 class="subtitle">Para los próximos días</h2>
-                <p class="description">Ingresá el nombre de tu ciudad, y conocé el clima.</p>
-               <div class="btn-container"> <a href="proximos-dias.html" class="btn">Conocé el clima</a></div>
+            <div class="card-wrapper">
+                
+    
             </div>
         </div>
     </div>
@@ -53,19 +57,14 @@
     <div class="bottom">
         <div class="container">
             <div class="arrow-container">
-                <a href=""><i class="fas fa-chevron-down arrow"></i></a>
+                <a href="#footer"><i class="fas fa-chevron-down arrow"></i></a>
             </div>
         </div>
     </div>
 
 
     </div>
-
-    <section class="cards-section">
-
-
-    </section>
-    <footer class="footer">
+    <footer id='footer' class="footer">
 
           <div class="container">
             <div class="names">
@@ -73,7 +72,7 @@
                 <p>Fernando Iraira</p>
             </div>
             <div>
-                <h4 class="subject"> Laboratorio de Programación</h4>
+                <h2 class="subject"> Laboratorio de Programación</h2>
             </div>
             
           </div>
@@ -83,6 +82,6 @@
     <!--Javascript-->
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <script src="menu.js"></script>
+    <script src="openweather.js"></script>
 </body>
-
 </html>

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAI-Weather - Próximos días</title>
     <link rel="stylesheet" href="styles.css">
+    <title>FAI-Weather</title>
 </head>
+
 <body>
 
     <div class="wrapper">
@@ -20,7 +22,7 @@
                 </div>
                 <div class="links">
                     <ul>
-                        <li><a href="index.html">Inicios</a></li>
+                        <li><a href="index.html">Inicio</a></li>
                         <li><a href="proximos-dias.html">Próximos dias</a></li>
                         <li><a href="https://github.com/JuanMartinMestica/FaiWeatherApp" target="_blank" class="btn">GitHub Repo</a></li>
                     </ul>
@@ -35,7 +37,15 @@
     <!--Contenido principal-->
     <div class="content">
         <div class="container">
-           
+            <div class="column-1">
+                <img class="person" src="/img/Weather_Monochromatic.svg" alt="personaje clima">
+            </div>
+            <div class="column-2">
+                <h1 class="title">Explorá el clima de tu ciudad,</h1>
+                <h2 class="subtitle">Para los próximos días</h2>
+                <p class="description">Ingresá el nombre de tu ciudad, y conocé el clima.</p>
+               <div class="btn-container"> <a href="proximos-dias.html" class="btn">Conocé el clima</a></div>
+            </div>
         </div>
     </div>
 
@@ -43,7 +53,7 @@
     <div class="bottom">
         <div class="container">
             <div class="arrow-container">
-                <a href=""><i class="fas fa-chevron-down arrow"></i></a>
+                <a href="#cards"><i class="fas fa-chevron-down arrow"></i></a>
             </div>
         </div>
     </div>
@@ -51,7 +61,10 @@
 
     </div>
 
-    <section class="cards-section">
+    <section id="cards" class="cards-section">
+
+        </div>
+
 
 
     </section>
@@ -63,7 +76,7 @@
                 <p>Fernando Iraira</p>
             </div>
             <div>
-                <h2 class="subject"> Laboratorio de Programación</h2>
+                <h4 class="subject"> Laboratorio de Programación</h4>
             </div>
             
           </div>
@@ -74,4 +87,5 @@
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <script src="menu.js"></script>
 </body>
+
 </html>
