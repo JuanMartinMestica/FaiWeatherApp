@@ -113,7 +113,7 @@ a {
     transform: .6s ease;
 }
 
-
+/*Contenido principal*/
 .content .container{
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -141,6 +141,7 @@ a {
     margin: 1rem 0 2rem;
 }
 
+/*Flecha abajo y menú responsive*/
 .arrow-container{
     display: flex;
     align-items: center;
@@ -162,13 +163,44 @@ a {
     font-size: 1.5rem;
 }
 
-
-
 .hide{
     display: none !important;
 }
 
+/*Sección de cards*/
+.cards-section{
+    min-height: 80vh;
+    background-color: var(--light-two);
+}
 
+
+/*footer*/
+.footer{
+    min-height: 20vh;
+    background-color: var(--dark-one);
+    display: flex;
+    align-items: center;
+
+}
+
+.footer .container{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.subject{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+
+
+
+/*Dispositivos medianos - chicos*/
 @media screen and (max-width:800px) {
     
     .content .container{
@@ -244,6 +276,7 @@ a {
 
 }
 
+/*Dispositivos muy chicos*/
 @media screen and (max-width: 480px) {
     
     .title{
