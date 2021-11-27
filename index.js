@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const fetch = require('node-fetch');
-var request = require('request');
+let request = require('request');
 
 
 app.listen(port, ()=>{
