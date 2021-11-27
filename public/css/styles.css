@@ -1,0 +1,299 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --dark-one: #333;
+  --dark-two: #7a7a7a;
+  --main-color: #64bcf4;
+  --hover-color: #5bacdf;
+  --light-one: #fff;
+  --light-two: #f9fafb;
+  --light-three: #f6f7fb;
+}
+
+
+/* Estilos generales */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  img {
+    width: 100%;
+  }
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.452), rgba(0, 0, 0, 0.527)),
+    url('../assets/images/img/background.jpg');
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+/*Navbar*/
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6rem;
+}
+
+.logo{
+    cursor: pointer;
+    color: var(--light-one);
+    text-transform: uppercase;
+}
+
+.links ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links a{
+    color: var(--light-one);
+    font-size: 1rem;
+    display: inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 1.4rem;
+    transition: .3s ease;
+}
+
+.btn{
+    background-color: var(--main-color);
+    color: var(--dark-one) !important;
+    border-radius: 20px;
+    padding: .6rem 1.2rem !important;
+    display: inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.links a:hover{
+    color: var(--hover-color);
+    transform: scale(1.1);
+    transform: .6s ease;
+}
+
+/*Contenido principal*/
+.content .container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+}
+
+
+.title{
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: var(--light-two);
+}
+
+.subtitle{
+    font-size: 2rem;
+    color: var(--light-three);
+}
+
+.description{
+    color: var(--light-one);
+    max-width: 500px;
+    line-height: 2;
+    margin: 1rem 0 2rem;
+}
+
+/*Flecha abajo y menú responsive*/
+.arrow-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.arrow{
+        font-size: 3rem;
+        color: white;
+        margin-bottom: 2rem;
+}
+
+.bar{
+    width: 3rem;
+    height: 3rem;
+    display: none;
+    color: var(--light-one);
+    font-size: 1.5rem;
+}
+
+.hide{
+    display: none !important;
+}
+
+/*Sección de cards*/
+.cards-section{
+    min-height: 80vh;
+    background-color: var(--light-two);
+}
+
+
+/*footer*/
+.footer{
+    min-height: 20vh;
+    background-color: var(--dark-one);
+    display: flex;
+    align-items: center;
+
+}
+
+.footer .container{
+    width: 100%;
+    max-width: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.subject{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+
+
+
+/*Dispositivos medianos - chicos*/
+@media screen and (max-width:800px) {
+    
+    .content .container{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .person{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .bar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+    }
+
+    .links{
+        position: fixed;
+        top: 0;
+        right: 0;
+        max-width: 400px;
+        width: 100%;
+        height: 100%;
+        z-index: 90;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        transform: translateX(100%);
+        transition: 0.5s ease;
+        background-color: var(--main-color);
+    }
+
+    .links ul{
+        flex-direction: column;
+    }
+
+    .links a{
+        color: var(--dark-one);
+        margin-left: 0;
+        padding: 2rem 0;
+    }
+    
+    .links .btn{
+        padding: 0;
+        background: none;
+    }
+
+    .active .links{
+        transform: translateX(0);
+    }
+
+    .column-1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title, .subtitle, .description{
+        text-align: center;
+    }
+
+    .description{
+        max-width: 900px;
+    }
+    
+    .btn-container{
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+/*Dispositivos muy chicos*/
+@media screen and (max-width: 480px) {
+    
+    .title{
+        font-size: 1.8rem;
+    }
+    .subtitle{
+        font-size: 1.4rem;
+    }
+
+    .logo{
+        font-size: 1.2rem;
+    }
+ 
+    .container{
+        max-width: 90rem;
+
+    }
+
+}
