@@ -15,7 +15,7 @@ const mostrarDatos = (fecha, ciudad, temperaturas) => {
 
     contenedorTarjetas.innerHTML = "";
 
-    for (let i = fechaActual; i <= fechaActual + 4; i++) {
+    for (let i = fechaActual; i <= fechaActual + 5; i++) {
         contenedorTarjetas.innerHTML += `
                     <div class="card">
                     <h2 class="day-name">${temperaturas[i][0]}</h2>
