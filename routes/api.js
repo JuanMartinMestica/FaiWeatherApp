@@ -11,7 +11,7 @@ router.post('/ciudades/:nombreCiudad', async (req, res) => {
 
     const nombreCiudad = req.params.nombreciudad;
 
-    if(datos[nombreCiudad] === undefined){
+    if (datos[nombreCiudad] === undefined) {
 
         const fetchres = await fetch(`https://community-open-weather-map.p.rapidapi.com/forecast?q=${nombreCiudad}&units=metric&lang=sp`, {
             "method": "GET",
@@ -21,7 +21,7 @@ router.post('/ciudades/:nombreCiudad', async (req, res) => {
             }
         });
 
-        if(fetchres.status !== 404){
+        if (fetchres.status !== 404) {
             const json = await fetchres.json();
             datos[nombreCiudad] = [json, Date.now()];
         }
@@ -30,10 +30,6 @@ router.post('/ciudades/:nombreCiudad', async (req, res) => {
 
 //Request de clima a partir de un nombre de ciudad
 router.get('/:nombreciudad', async (req, res) => {
-
-
-    console.log(process.env.API_KEY);
-
     //Se extrae el nombre de ciudad
     const nombreCiudad = req.params.nombreciudad;
 
@@ -55,7 +51,7 @@ router.get('/:nombreciudad', async (req, res) => {
         if (fetchres.status === 404) {
             res.status(404).send('Not found');
         } else {
-       
+
             //Si no existe error, se obtiene el json y se almacena en la variable global
             const json = await fetchres.json();
 
