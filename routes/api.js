@@ -73,10 +73,11 @@ router.get('/:nombreciudad', async (req, res) => {
 
             datos[nombreCiudad] = [datosLimpios, Date.now()];
 
-                //Se retornan los datos correspondientes
-                  res.json(datos[nombreCiudad][0]);
-
         }
+
+            //Se retornan los datos correspondientes
+            res.json(datos[nombreCiudad][0]);
+
     }
 
 
