@@ -92,6 +92,7 @@ const getClima = async (ciudad) => {
 
     const response = await fetch(api_url);
 
+
     if (response.status === 404) {
 
         nombreCiudad.innerHTML= 'No se encontró la ciudad';
