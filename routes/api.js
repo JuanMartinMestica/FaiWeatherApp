@@ -36,9 +36,6 @@ router.get('/:nombreciudad', async (req, res) => {
     //Se verifica si no existe en el diccionario la ciudad solicitada
     if (datos[nombreCiudad] === undefined) {
 
-
-        //Consultar timestamp?
-
         const fetchres = await fetch(`https://community-open-weather-map.p.rapidapi.com/forecast?q=${nombreCiudad}&units=metric&lang=sp`, {
             "method": "GET",
             "headers": {
@@ -62,6 +59,7 @@ router.get('/:nombreciudad', async (req, res) => {
             res.json(json);
         }
     } else {
+        
 
         res.json(datos[nombreCiudad][0]);
 
