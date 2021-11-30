@@ -198,6 +198,48 @@ a {
 }
 
 
+.cards{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card-wrap{
+    margin: 1.7rem .8rem;
+}
+
+.card img{
+    width: 100px;
+}
+
+.card{
+    position: relative;
+    width: 300px;
+    max-width: 390px;
+    min-height: 520px;
+    background-color: var(--light-three);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    overflow: hidden;
+    transition: .4s ease;
+}
+
+.card .title-sm{
+    color: var(--dark-one);
+    line-height: .8;
+    font-weight: 800;
+    font-size: 1.6rem;
+}
+
+.card .text{
+    font-size: 1.15rem;
+    margin: 1.8rem 0;
+}
+
 
 
 

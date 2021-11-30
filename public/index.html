@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>FAI-Weather</title>
 </head>
 
@@ -13,64 +13,94 @@
 
     <div class="wrapper">
 
-    <!--Navbar-->
-    <header>
+        <!--Navbar-->
+        <header>
             <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <h2 class="logo"> FAI-Weather</h2>
-                </div>
-                <div class="links">
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="proximos-dias.html">Próximos dias</a></li>
-                        <li><a href="https://github.com/JuanMartinMestica/FaiWeatherApp" target="_blank" class="btn">GitHub Repo</a></li>
-                    </ul>
-                </div>
+                <nav class="navbar">
+                    <div class="logo">
+                        <h2 class="logo"> FAI-Weather</h2>
+                    </div>
+                    <div class="links">
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="proximos-dias.html">Próximos dias</a></li>
+                            <li><a href="https://github.com/JuanMartinMestica/FaiWeatherApp" target="_blank"
+                                    class="btn">GitHub Repo</a></li>
+                        </ul>
+                    </div>
                     <div class="bar">
                         <i class="fas fa-bars"></i>
                         <i class="hide fas fa-times"></i>
                     </div>
-            </nav>
-        </div>
-    </header>
-    <!--Contenido principal-->
-    <div class="content">
-        <div class="container">
-            <div class="column-1">
-                <img class="person" src="assets/images/img/Weather_Monochromatic.svg" alt="personaje clima">
+                </nav>
             </div>
-            <div class="column-2">
-                <h1 class="title">Explorá el clima de tu ciudad,</h1>
-                <h2 class="subtitle">Para los próximos días</h2>
-                <p class="description">Ingresá el nombre de tu ciudad, y conocé el clima.</p>
-               <div class="btn-container"> <a href="proximos-dias.html" class="btn">Conocé el clima</a></div>
+        </header>
+        <!--Contenido principal-->
+        <div class="content">
+            <div class="container">
+                <div class="column-1">
+                    <img class="person" src="assets/images/img/Weather_Monochromatic.svg" alt="personaje clima">
+                </div>
+                <div class="column-2">
+                    <h1 class="title">Explorá el clima de tu ciudad,</h1>
+                    <h2 class="subtitle">Para los próximos días</h2>
+                    <p class="description">Ingresá el nombre de tu ciudad, y conocé el clima.</p>
+                    <div class="btn-container"> <a href="proximos-dias.html" class="btn">Conocé el clima</a></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!--Flecha abajo-->
-    <div class="bottom">
-        <div class="container">
-            <div class="arrow-container">
-                <a href="#cards"><i class="fas fa-chevron-down arrow"></i></a>
+        <!--Flecha abajo-->
+        <div class="bottom">
+            <div class="container">
+                <div class="arrow-container">
+                    <a href="#cards"><i class="fas fa-chevron-down arrow"></i></a>
+                </div>
             </div>
         </div>
-    </div>
 
 
     </div>
 
     <section id="cards" class="cards-section">
 
-        </div>
+        <div class="cards">
+            <div class="card-wrap">
+                <div class="card" data-card="UI/UX">
+                    <div class="card-content">
+                        <img src="assets/images/img/weather-forecast.png" alt="" srcset="" class="icon">
+                        <h3 class="title-sm">Documentación de la API</h3>
+                        <p class="text"> 5 day - 3hour weather forecast - OpenWeatherMap</p>
+                        <a href="https://openweathermap.org/forecast5" class="btn">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-wrap">
+                <div class="card" data-card="Web">
+                    <div class="card-content">
+                        <img src="assets/images/img/github.png" alt="" srcset="" class="icon">
+                        <h3 class="title-sm">Repositorio de GitHub</h3>
+                        <p class="text"> </p>
+                        <a href="https://github.com/JuanMartinMestica/FaiWeatherApp" class="btn">Ir al Repositorio</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-wrap">
+                <div class="card" data-card="Mobile">
+                    <div class="card-content">
+                        <img src="assets/images/img/google-drive.png" alt="" srcset="" class="icon">
+                        <h3 class="title-sm">Informe</h3>
+                        <p class="text"> </p>
+                        <a href="" class="btn">Leer informe</a>
+                    </div>
+                </div>
 
 
 
     </section>
     <footer class="footer">
 
-          <div class="container">
+        <div class="container">
             <div class="names">
                 <p>Juan Martín Mestica</p>
                 <p>Fernando Iraira</p>
@@ -78,8 +108,8 @@
             <div>
                 <h4 class="subject"> Laboratorio de Programación</h4>
             </div>
-            
-          </div>
+
+        </div>
 
     </footer>
 
