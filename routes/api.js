@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const tools = require('../tools');
+let limpiezaDatos = require('../tools');
 
 require('dotenv').config();
 
@@ -41,9 +43,12 @@ router.get('/:nombreciudad', async (req, res) => {
             //Si no existe error, se obtiene el json y se almacena en la variable global
             const json = await fetchres.json();
 
+            //Se limpian los datos
+            const datosLimpios = tools.limpiarDatos(json);
+
             /*En el diccionario global, se almacena un timestamp de la consulta y el json 
             con los datos del clima para la ciudad */
-            datos[nombreCiudad] = [json, Date.now()];
+            datos[nombreCiudad] = [datosLimpios, Date.now()];
 
         }
     } else {
@@ -56,15 +61,15 @@ router.get('/:nombreciudad', async (req, res) => {
         //Se verifica si pasaron 3 horas desde la última consulta
         if (Date.now() - timestamp > cantMs) {
 
-            console.log('Se actualizaron los datos');
-
             /*Si pasaron más de 3 horas desde la anterior consulta 
             entonces se hace una nueva consulta y se actualiza el diccionario local*/
             let fetchres = await fetchAPI(nombreCiudad);
 
             const json = await fetchres.json();
 
-            datos[nombreCiudad] = [json, Date.now()];
+            const datosLimpios = tools.limpiarDatos(json)
+
+            datos[nombreCiudad] = [datosLimpios, Date.now()];
 
         }
     }
