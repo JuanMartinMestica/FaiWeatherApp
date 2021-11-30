@@ -15,16 +15,20 @@ const mostrarDatos = (datos) => {
 
     contenedorTarjetas.innerHTML = "";
 
-    for (let i = fechaActual; i <= fechaActual + 5; i++) {
+
+    for (let i = 0; i < Object.keys(datos).length -2; i++) {
+
+        let key = Object.keys(datos)[i];
+
         contenedorTarjetas.innerHTML += `
                     <div class="card">
-                    <h2 class="day-name">${datos[i][0]}</h2>
+                    <h2 class="day-name">${datos[key][0]}</h2>
                     <div class="day-icon">
-                        <img src="/assets/images/icons/${datos[i][3]}.png" alt="" srcset="">
+                        <img src="/assets/images/icons/${datos[key][3]}.png" alt="" srcset="">
                     </div>
                     <div class="temp">
-                        <p class="temp-text">MÁX: ${datos[i][2]} </p>
-                        <p class="temp-text">MIN: ${datos[i][1]} </p>
+                        <p class="temp-text">MÁX: ${datos[key][2]} </p>
+                        <p class="temp-text">MIN: ${datos[key][1]} </p>
                     </div>
                 </div>
        `;
