@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
-const tools = require('../tools');
-let limpiezaDatos = require('../tools');
+const tools = require('../src/tools');
 
 require('dotenv').config();
 
@@ -50,6 +49,9 @@ router.get('/:nombreciudad', async (req, res) => {
             con los datos del clima para la ciudad */
             datos[nombreCiudad] = [datosLimpios, Date.now()];
 
+            //Se retornan los datos correspondientes
+            res.json(datos[nombreCiudad][0]);
+
         }
     } else {
 
@@ -71,11 +73,13 @@ router.get('/:nombreciudad', async (req, res) => {
 
             datos[nombreCiudad] = [datosLimpios, Date.now()];
 
+                //Se retornan los datos correspondientes
+                  res.json(datos[nombreCiudad][0]);
+
         }
     }
 
-    //Se retornan los datos correspondientes
-    res.json(datos[nombreCiudad][0]);
+
 });
 
 const fetchAPI = async (nombreCiudad) => {
