@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-
+//Variable global que almacena los datos
 let datos = {};
 
 router.post('/ciudades/:nombreCiudad', async (req, res) => {
