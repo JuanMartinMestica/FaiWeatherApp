@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAI-Weather - Próximos días</title>
-    <link rel="stylesheet" href="../css/proximos-dias.css">
+    <link rel="stylesheet" href="/css/proximos-dias.css">
 </head>
 <body>
 
@@ -40,6 +40,13 @@
         <div class="container search">
             <form class="search-box" id="search-form">
                 <input autocomplete=off type="text" class="search-bar" id="search-bar" placeholder="Ingresá el nombre de tu ciudad">
+              
+                <div class="filter">
+                    <input type="checkbox" name="filtrar-dias" id="check">
+                    <h3>Filtrar días:</h3>
+                    <input type="number" value="5" min=1 max=5>
+                </div>
+
                </form>
                <div class="city">
                     <h1 class="city-name"></h1>
