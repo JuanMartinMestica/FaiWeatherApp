@@ -60,14 +60,14 @@ module.exports = {
     } ,
 
 
-    obtenerDias: function(dias){
+    obtenerDias: function(dias, datos){
         let diasSolicitados= {};
 
         for(let i=0;i<dias;i++){
-            diasSolicitados[i] = datos[nom][0][i];
+            diasSolicitados[i] = datos[i];
         }
 
-        diasSolicitados['nombreCiudad'] = datos[nom][0]['nombreCiudad'];
+        diasSolicitados['nombreCiudad'] = datos['nombreCiudad'];
         
         return diasSolicitados;
         
