@@ -10,8 +10,8 @@ require('dotenv').config();
 //Variable global que almacena los datos
 let datos = {};
 
-router.post('/ciudades/:nombreCiudad',  validation.validate(validation.checkCiudad), async (req, res) => {
-    
+router.post('/ciudades/:nombreCiudad', validation.validate(validation.checkCiudad), async (req, res) => {
+
     const nombreCiudad = req.params.nombreciudad;
 
     if (datos[nombreCiudad] === undefined) {
@@ -21,7 +21,6 @@ router.post('/ciudades/:nombreCiudad',  validation.validate(validation.checkCiud
         if (fetchres.status !== 404) {
             const json = await fetchres.json();
             datos[nombreCiudad] = [json, Date.now()];
-            console.log('');
             res.send('Ciudad almacenada correctamente');
         }
     }
@@ -43,15 +42,7 @@ router.get('/:nombreciudad', validation.validate(validation.checkCiudad), async 
             res.status(404).send('Not found');
         } else {
 
-            //Si no existe error, se obtiene el json y se almacena en la variable global
-            const json = await fetchres.json();
-
-            //Se limpian los datos
-            const datosLimpios = tools.limpiarDatos(json);
-
-            /*En el diccionario global, se almacena un timestamp de la consulta y el json 
-            con los datos del clima para la ciudad */
-            datos[nombreCiudad] = [datosLimpios, Date.now()];
+            await almacenarDatos(fetchres, nombreCiudad);
 
             //Se retornan los datos correspondientes
             res.json(datos[nombreCiudad][0]);
@@ -59,28 +50,17 @@ router.get('/:nombreciudad', validation.validate(validation.checkCiudad), async 
         }
     } else {
 
-        //Se obtiene el timestamp de cuando se hizo la consulta
-        let timestamp = datos[nombreCiudad][1];
-        let hs = 3;
-        let cantMs = hs * 3600000;
-
         //Se verifica si pasaron 3 horas desde la última consulta
-        if (Date.now() - timestamp > cantMs) {
+        if (verificarTimestamp(nombreCiudad)) {
 
+            let fetchres = await fetchAPI(nom);
             /*Si pasaron más de 3 horas desde la anterior consulta 
             entonces se hace una nueva consulta y se actualiza el diccionario local*/
-            let fetchres = await fetchAPI(nombreCiudad);
-
-            const json = await fetchres.json();
-
-            const datosLimpios = tools.limpiarDatos(json)
-
-            datos[nombreCiudad] = [datosLimpios, Date.now()];
-
+            await almacenarDatos(fetchres, nom);
         }
 
-            //Se retornan los datos correspondientes
-            res.json(datos[nombreCiudad][0]);
+        //Se retornan los datos correspondientes
+        res.json(datos[nombreCiudad][0]);
 
     }
 
@@ -88,68 +68,70 @@ router.get('/:nombreciudad', validation.validate(validation.checkCiudad), async 
 
 
 //Query
-router.get('/filtrar/:nombreciudad', validation.validate(validation.checkCiudad), async (req,res)=>{
+router.get('/filtrar/:nombreciudad', validation.validate(validation.checkCiudad), async (req, res) => {
 
     const dias = req.query.dias;
-    const nom = req.params.nombreciudad;
+    const nombreCiudad = req.params.nombreciudad;
 
     //Se verifica si no existe en el diccionario la ciudad solicitada
-    if (datos[nom] === undefined) {
+    if (datos[nombreCiudad] === undefined) {
 
-        let fetchres = await fetchAPI(nom);
+        let fetchres = await fetchAPI(nombreCiudad);
 
         //Se chequea si la API retorna 404 y se retorna al script del frontend
         if (fetchres.status === 404) {
             res.status(404).send('Not found');
         } else {
 
-            //Si no existe error, se obtiene el json y se almacena en la variable global
-            const json = await fetchres.json();
+            await almacenarDatos(fetchres, nombreCiudad);
 
-            //Se limpian los datos
-            const datosLimpios = tools.limpiarDatos(json);
-
-            /*En el diccionario global, se almacena un timestamp de la consulta y el json 
-            con los datos del clima para la ciudad */
-            datos[nom] = [datosLimpios, Date.now()];
-
-            let diasSolicitados = tools.obtenerDias(dias, datos[nom][0]);
+            let diasSolicitados = tools.obtenerDias(dias, datos[nombreCiudad][0]);
 
             res.json(diasSolicitados);
 
         }
     } else {
 
-        //Se obtiene el timestamp de cuando se hizo la consulta
-        let timestamp = datos[nom][1];
-        let hs = 3;
-        let cantMs = hs * 3600000;
-
         //Se verifica si pasaron 3 horas desde la última consulta
-        if (Date.now() - timestamp > cantMs) {
+        if (verificarTimestamp(nombreCiudad)) {
 
+            let fetchres = await fetchAPI(nombreCiudad);
             /*Si pasaron más de 3 horas desde la anterior consulta 
             entonces se hace una nueva consulta y se actualiza el diccionario local*/
-            let fetchres = await fetchAPI(nom);
-
-            const json = await fetchres.json();
-
-            const datosLimpios = tools.limpiarDatos(json)
-
-            datos[nom] = [datosLimpios, Date.now()];
+            await almacenarDatos(fetchres, nombreCiudad);
 
         }
 
-        let diasSolicitados = tools.obtenerDias(dias, datos[nom][0]);
+        let diasSolicitados = tools.obtenerDias(dias, datos[nombreCiudad][0]);
 
-
-
-            //Se retornan los datos correspondientes
-            res.json(diasSolicitados);
+        //Se retornan los datos correspondientes
+        res.json(diasSolicitados);
 
     }
-    
+
 });
+
+
+const almacenarDatos = async (fetchres, nombreCiudad) => {
+
+    const json = await fetchres.json();
+
+    const datosLimpios = tools.limpiarDatos(json)
+
+    datos[nombreCiudad] = [datosLimpios, Date.now()];
+
+
+}
+
+const verificarTimestamp = (nombre) => {
+
+    //Se obtiene el timestamp de cuando se hizo la consulta
+    let timestamp = datos[nombre][1];
+    let hs = 3;
+    let cantMs = hs * 3600000;
+
+    return Date.now() - timestamp > cantMs
+}
 
 
 const fetchAPI = async (nombreCiudad) => {
