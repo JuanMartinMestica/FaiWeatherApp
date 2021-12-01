@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const tools = require('../src/tools');
+const validation = require('../src/validations');
 
 require('dotenv').config();
 
 //Variable global que almacena los datos
 let datos = {};
 
-router.post('/ciudades/:nombreCiudad', async (req, res) => {
+router.post('/ciudades/:nombreCiudad',  validation.validate(validation.checkCiudad), async (req, res) => {
     
     const nombreCiudad = req.params.nombreciudad;
 
@@ -24,7 +25,7 @@ router.post('/ciudades/:nombreCiudad', async (req, res) => {
 })
 
 //Request de clima a partir de un nombre de ciudad
-router.get('/:nombreciudad', async (req, res) => {
+router.get('/:nombreciudad', validation.validate(validation.checkCiudad), async (req, res) => {
 
     //Se extrae el nombre de ciudad
     const nombreCiudad = req.params.nombreciudad;
@@ -80,6 +81,7 @@ router.get('/:nombreciudad', async (req, res) => {
 
     }
 
+    console.log(datos);
 
 });
 

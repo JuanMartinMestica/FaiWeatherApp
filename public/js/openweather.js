@@ -48,6 +48,11 @@ const getClima = async (ciudad) => {
         nombreCiudad.innerHTML = 'No se encontró la ciudad';
         contenedorTarjetas.innerHTML = '';
 
+    } else if (response.status === 400){
+
+        nombreCiudad.innerHTML = 'Error 400 - Bad Request';
+        contenedorTarjetas.innerHTML = '';
+
     } else {
 
         const json = await response.json();
