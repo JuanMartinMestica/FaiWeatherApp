@@ -1,3 +1,4 @@
+const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
@@ -20,6 +21,8 @@ router.post('/ciudades/:nombreCiudad',  validation.validate(validation.checkCiud
         if (fetchres.status !== 404) {
             const json = await fetchres.json();
             datos[nombreCiudad] = [json, Date.now()];
+            console.log('');
+            res.send('Ciudad almacenada correctamente');
         }
     }
 })
@@ -81,9 +84,73 @@ router.get('/:nombreciudad', validation.validate(validation.checkCiudad), async 
 
     }
 
-    console.log(datos);
-
 });
+
+
+//Query
+router.get('/filtrar/:nombreciudad', validation.validate(validation.checkCiudad), async (req,res)=>{
+
+    const dias = req.query.dias;
+    const nom = req.params.nombreciudad;
+
+    //Se verifica si no existe en el diccionario la ciudad solicitada
+    if (datos[nom] === undefined) {
+
+        let fetchres = await fetchAPI(nom);
+
+        //Se chequea si la API retorna 404 y se retorna al script del frontend
+        if (fetchres.status === 404) {
+            res.status(404).send('Not found');
+        } else {
+
+            //Si no existe error, se obtiene el json y se almacena en la variable global
+            const json = await fetchres.json();
+
+            //Se limpian los datos
+            const datosLimpios = tools.limpiarDatos(json);
+
+            /*En el diccionario global, se almacena un timestamp de la consulta y el json 
+            con los datos del clima para la ciudad */
+            datos[nom] = [datosLimpios, Date.now()];
+
+            let diasSolicitados = tools.obtenerDias(dias, datos[nom][0]);
+
+            res.json(diasSolicitados);
+
+        }
+    } else {
+
+        //Se obtiene el timestamp de cuando se hizo la consulta
+        let timestamp = datos[nom][1];
+        let hs = 3;
+        let cantMs = hs * 3600000;
+
+        //Se verifica si pasaron 3 horas desde la última consulta
+        if (Date.now() - timestamp > cantMs) {
+
+            /*Si pasaron más de 3 horas desde la anterior consulta 
+            entonces se hace una nueva consulta y se actualiza el diccionario local*/
+            let fetchres = await fetchAPI(nom);
+
+            const json = await fetchres.json();
+
+            const datosLimpios = tools.limpiarDatos(json)
+
+            datos[nom] = [datosLimpios, Date.now()];
+
+        }
+
+        let diasSolicitados = tools.obtenerDias(dias, datos[nom][0]);
+
+
+
+            //Se retornan los datos correspondientes
+            res.json(diasSolicitados);
+
+    }
+    
+});
+
 
 const fetchAPI = async (nombreCiudad) => {
 

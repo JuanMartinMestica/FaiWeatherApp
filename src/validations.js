@@ -6,7 +6,6 @@ function validate(validation) {
         } catch (error) {
             res.status(400);
             next(error);
-           
         }
     }
 }

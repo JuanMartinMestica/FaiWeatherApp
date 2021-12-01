@@ -3,6 +3,8 @@ let nombreCiudad = document.querySelector('.city-name');
 let buscador = document.getElementById('search-bar');
 let formBuscador = document.getElementById('search-form');
 let contenedorTarjetas = document.querySelector('.card-wrapper');
+let checkbox = document.getElementById('check');
+let inputDias = document.getElementById('cantDias');
 
 
 //Se muestran los datos en el HTML
@@ -15,8 +17,7 @@ const mostrarDatos = (datos) => {
 
     contenedorTarjetas.innerHTML = "";
 
-
-    for (let i = 0; i < Object.keys(datos).length -2; i++) {
+    for (let i = 0; i < Object.keys(datos).length - 1; i++) {
 
         let key = Object.keys(datos)[i];
 
@@ -36,9 +37,23 @@ const mostrarDatos = (datos) => {
 }
 
 
-const getClima = async (ciudad) => {
+const getClima = (ciudad) => {
 
-    api_url = `/api/${ciudad}`;
+    let api_url = `/api/${ciudad}`;
+
+    fetchServer(api_url);
+}
+
+
+const getClimaDias = (nombreCiudad, cantDias) => {
+
+    let api_url = `/api/filtrar/${nombreCiudad}?dias=${cantDias}`
+
+    fetchServer(api_url);
+}
+
+
+const fetchServer = async (api_url) => {
 
     const response = await fetch(api_url);
 
@@ -48,7 +63,7 @@ const getClima = async (ciudad) => {
         nombreCiudad.innerHTML = 'No se encontró la ciudad';
         contenedorTarjetas.innerHTML = '';
 
-    } else if (response.status === 400){
+    } else if (response.status === 400) {
 
         nombreCiudad.innerHTML = 'Error 400 - Bad Request';
         contenedorTarjetas.innerHTML = '';
@@ -59,12 +74,16 @@ const getClima = async (ciudad) => {
         mostrarDatos(json);
     }
 
+
 }
+
 
 
 formBuscador.addEventListener("submit", e => {
     e.preventDefault();
-    getClima(buscador.value);
+
+    checkbox.checked ? getClimaDias(buscador.value, inputDias.value) : getClima(buscador.value);
+
 });
 
 //Al cargarse la ventana, por defecto se seleccionará Neuquén

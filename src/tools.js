@@ -11,10 +11,9 @@ module.exports = {
         let dict = {};
         let maxDia = 0;
         let minDia = 100;
-    
+        let indice = 0;
     
         dict['nombreCiudad'] = datos.city.name;
-        dict['fechaHoy'] = datos.list[0].dt_txt;
 
         while (dias[i]) {
     
@@ -47,7 +46,8 @@ module.exports = {
                 let dia = diaSemana[fechaIndice.getDay()];
     
                 //Se crea entrada con la máxima y mínima 
-                dict[nroAuxDia] = [dia, minDia, maxDia, codIcono];
+                dict[indice] = [dia, minDia, maxDia, codIcono];
+                indice++;
     
                 minDia = 100;
                 maxDia = 0;
@@ -57,6 +57,20 @@ module.exports = {
 
         return dict;
     
+    } ,
+
+
+    obtenerDias: function(dias){
+        let diasSolicitados= {};
+
+        for(let i=0;i<dias;i++){
+            diasSolicitados[i] = datos[nom][0][i];
+        }
+
+        diasSolicitados['nombreCiudad'] = datos[nom][0]['nombreCiudad'];
+        
+        return diasSolicitados;
+        
     }
 
 }
