@@ -87,7 +87,7 @@ formBuscador.addEventListener("submit", e => {
 });
 
 //Al cargarse la ventana, por defecto se seleccionará Neuquén
-window.onload = async () => {
+window.onload = () => {
     getClima('Neuquén');
 }
 

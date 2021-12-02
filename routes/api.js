@@ -1,4 +1,3 @@
-const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
@@ -10,7 +9,7 @@ require('dotenv').config();
 //Variable global que almacena los datos
 let datos = {};
 
-router.post('/:nombreciudad', async (req, res) => {
+router.post('/:nombreciudad',validation.validate(validation.checkCiudad),async (req, res) => {
 
     const nombreCiudad = req.params.nombreciudad;
 
