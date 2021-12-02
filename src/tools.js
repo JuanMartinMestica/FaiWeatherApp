@@ -12,7 +12,7 @@ module.exports = {
         let maxDia = 0;
         let minDia = 100;
         let indice = 0;
-    
+        
         dict['nombreCiudad'] = datos.city.name;
 
         while (dias[i]) {

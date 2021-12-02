@@ -10,7 +10,7 @@ require('dotenv').config();
 //Variable global que almacena los datos
 let datos = {};
 
-router.post('/ciudades/:nombreCiudad', validation.validate(validation.checkCiudad), async (req, res) => {
+router.post('/:nombreciudad', async (req, res) => {
 
     const nombreCiudad = req.params.nombreciudad;
 
@@ -19,9 +19,10 @@ router.post('/ciudades/:nombreCiudad', validation.validate(validation.checkCiuda
         const fetchres = await fetchAPI(nombreCiudad);
 
         if (fetchres.status !== 404) {
-            const json = await fetchres.json();
-            datos[nombreCiudad] = [json, Date.now()];
+            
+            await almacenarDatos(fetchres, nombreCiudad);
             res.send('Ciudad almacenada correctamente');
+            console.log(datos);
         }
     }
 })
@@ -116,7 +117,7 @@ const almacenarDatos = async (fetchres, nombreCiudad) => {
 
     const json = await fetchres.json();
 
-    const datosLimpios = tools.limpiarDatos(json)
+    const datosLimpios = tools.limpiarDatos(json);
 
     datos[nombreCiudad] = [datosLimpios, Date.now()];
 
