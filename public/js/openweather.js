@@ -10,8 +10,6 @@ let inputDias = document.getElementById('cantDias');
 //Se muestran los datos en el HTML
 const mostrarDatos = (datos) => {
 
-    let fechaActual = new Date(datos['fechaHoy']).getDate();
-
     //Se setea el titulo con el nombre de la ciudad
     nombreCiudad.innerHTML = datos['nombreCiudad'];
 
